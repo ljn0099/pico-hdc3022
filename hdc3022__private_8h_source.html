@@ -102,77 +102,80 @@ $(document).ready(function(){initNavTree('hdc3022__private_8h_source.html',''); 
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#ifndef HDC3022_PRIVATE_H</span></div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#define HDC3022_PRIVATE_H</span></div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#define HDC3022_SOFT_RESET 0x3041</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#include &quot;<a class="code" href="hdc3022_8h.html">sensor/hdc3022.h</a>&quot;</span></div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#define HDC3022_DELAY_LPM_0_MS 15</span></div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#define HDC3022_DELAY_LPM_1_MS 9</span></div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#define HDC3022_DELAY_LPM_2_MS 6</span></div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#define HDC3022_DELAY_LPM_3_MS 5</span></div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#define HDC3022_DELAY_RESET_MS 3</span></div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#define HDC3022_DELAY_POWER_ON_MS 5</span></div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#define HDC3022_DELAY_EEPROM_MS 80</span></div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#define HDC3022_AUTO_MEAS_EXIT 0x3093</span></div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#define HDC3022_TRANSFER_ALERT_THRESHOLDS_EEPROM 0x6155</span></div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor">#define HDC3022_OFFSET_VALUE_ACCESS 0xA004</span></div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#define HDC3022_DEFAULT_DEVICE_MEAS_STATE_ACCESS 0x61BB</span></div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">#define HDC3022_TEMP_LSB_OFFSET 0.1708984375f</span></div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">#define HDC3022_HUMIDITY_LSB_OFFSET 0.1953125f</span></div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="preprocessor">#define HDC3022_POSITIVE_SIGN_OFFSET 0x80</span></div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="preprocessor">#define HDC3022_NEGATIVE_SIGN_OFFSET 0x00</span></div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="preprocessor">#define HDC3022_HEATER_ENABLE 0x306D</span></div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="preprocessor">#define HDC3022_HEATER_DISABLE 0x3066</span></div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="preprocessor">#define HDC3022_HEATER_CONFIG 0x306E</span></div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="preprocessor">#define HDC3022_STATUS_REGISTER_READ 0xF32D</span></div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="preprocessor">#define HDC3022_STATUS_REGISTER_CLEAR 0x3041</span></div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="preprocessor">#define HDC3022_NIST_ID_BYTES_5_4_READ 0x3683</span></div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="preprocessor">#define HDC3022_NIST_ID_BYTES_3_2_READ 0x3684</span></div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="preprocessor">#define HDC3022_NIST_ID_BYTES_1_0_READ 0x3685</span></div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="preprocessor">#define HDC3022_MANUFACTER_ID_READ 0x3781</span></div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="keywordtype">bool</span> <a class="code hl_function" href="hdc3022__private_8h.html#a0e93d6d9fffa9a3dfe7af92a59a0e2f0">hdc3022_write_command</a>(<a class="code hl_struct" href="structhdc3022__t.html">hdc3022_t</a> *hdc3022, uint16_t command, <span class="keywordtype">bool</span> nostop);</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="keywordtype">bool</span> <a class="code hl_function" href="hdc3022__private_8h.html#a342fc976a814c649219f745ef9b3b1f7">hdc3022_write_command_data</a>(<a class="code hl_struct" href="structhdc3022__t.html">hdc3022_t</a> *hdc3022, uint16_t command, uint16_t data, <span class="keywordtype">bool</span> nostop);</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span><span class="keywordtype">bool</span> <a class="code hl_function" href="hdc3022__private_8h.html#aed54e0ed94b94300736c5c1efd0c4185">hdc3022_read_single_data</a>(<a class="code hl_struct" href="structhdc3022__t.html">hdc3022_t</a> *hdc3022, uint16_t *data, <span class="keywordtype">bool</span> nostop);</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><span class="keywordtype">bool</span> <a class="code hl_function" href="hdc3022__private_8h.html#ab3c696509d20e97a46cd08b2a4a56005">hdc3022_read_multi_data</a>(<a class="code hl_struct" href="structhdc3022__t.html">hdc3022_t</a> *hdc3022, uint16_t *data1, uint16_t *data2, <span class="keywordtype">bool</span> nostop);</div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span><span class="keywordtype">float</span> <a class="code hl_function" href="hdc3022__private_8h.html#af34a5406e191fe5adbab96f24bd287aa">hdc3022_calculate_temp</a>(uint16_t rawTemp, <a class="code hl_enumeration" href="hdc3022_8h.html#ac74ed866d76db55e34b0c422825793fe">hdc3022_TempUnit_t</a> tempUnit);</div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
-<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span><span class="keywordtype">float</span> <a class="code hl_function" href="hdc3022__private_8h.html#a2f63811ed31191e98b307cb76503c689">hdc3022_calculate_humidity</a>(uint16_t rawHumidity);</div>
-<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span> </div>
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>uint16_t <a class="code hl_function" href="hdc3022__private_8h.html#ae3c19ae6e8d683353c50f8a013121ef0">hdc3022_calculate_rawTemp</a>(<a class="code hl_enumeration" href="hdc3022_8h.html#ac74ed866d76db55e34b0c422825793fe">hdc3022_TempUnit_t</a> tempUnit, <span class="keywordtype">float</span> temp);</div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span> </div>
-<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>uint16_t <a class="code hl_function" href="hdc3022__private_8h.html#a2934742dc5fad0c2e31e928acddea04f">hdc3022_calculate_rawHumidity</a>(<span class="keywordtype">float</span> humidity);</div>
-<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span> </div>
-<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>uint16_t <a class="code hl_function" href="hdc3022__private_8h.html#a9892dcf3ad2d67114c9f27fe3c030d29">hdc3022_calculate_alert_threshold</a>(<a class="code hl_enumeration" href="hdc3022_8h.html#ac74ed866d76db55e34b0c422825793fe">hdc3022_TempUnit_t</a> tempUnit, <span class="keywordtype">float</span> temp, <span class="keywordtype">float</span> humidity);</div>
-<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span> </div>
-<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span><span class="keywordtype">void</span> <a class="code hl_function" href="hdc3022__private_8h.html#a863c907580ba867cd64786758b1de297">hdc3022_decode_alert_threshold</a>(uint16_t threshold, <a class="code hl_enumeration" href="hdc3022_8h.html#ac74ed866d76db55e34b0c422825793fe">hdc3022_TempUnit_t</a> tempUnit, <span class="keywordtype">float</span> *temp,</div>
-<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>                                    <span class="keywordtype">float</span> *humidity);</div>
-<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span> </div>
-<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>uint8_t <a class="code hl_function" href="hdc3022__private_8h.html#afa5ca4ae270d460f0409f28d99bcc42a">hdc3022_calculate_temp_offset</a>(<a class="code hl_enumeration" href="hdc3022_8h.html#ac74ed866d76db55e34b0c422825793fe">hdc3022_TempUnit_t</a> tempUnit, <span class="keywordtype">float</span> temp);</div>
-<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span> </div>
-<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>uint8_t <a class="code hl_function" href="hdc3022__private_8h.html#a74779f6be0484de9de3e8a7b2d266094">hdc3022_calculate_humidity_offset</a>(<span class="keywordtype">float</span> humidity);</div>
-<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span> </div>
-<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>uint16_t <a class="code hl_function" href="hdc3022__private_8h.html#ab419b1b621ba36fb70b0066d0eaea9af">hdc3022_calculate_offset</a>(<a class="code hl_enumeration" href="hdc3022_8h.html#ac74ed866d76db55e34b0c422825793fe">hdc3022_TempUnit_t</a> tempUnit, <span class="keywordtype">float</span> temp, <span class="keywordtype">float</span> humidity);</div>
-<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span> </div>
-<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span><span class="keywordtype">float</span> <a class="code hl_function" href="hdc3022__private_8h.html#a7949ecbedbbcc7b6c81fafe1f039eb1e">hdc3022_decode_temp_offset</a>(<a class="code hl_enumeration" href="hdc3022_8h.html#ac74ed866d76db55e34b0c422825793fe">hdc3022_TempUnit_t</a> tempUnit, uint8_t tempOffset);</div>
-<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span> </div>
-<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span><span class="keywordtype">float</span> <a class="code hl_function" href="hdc3022__private_8h.html#a1ff836849302fd64754ffaf2349c7a9b">hdc3022_decode_humidity_offset</a>(uint8_t humidityOffset);</div>
-<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span> </div>
-<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span><span class="keywordtype">void</span> <a class="code hl_function" href="hdc3022__private_8h.html#a0c156057d18b53f2029e9085c92b5139">hdc3022_decode_offset</a>(uint16_t offset, <a class="code hl_enumeration" href="hdc3022_8h.html#ac74ed866d76db55e34b0c422825793fe">hdc3022_TempUnit_t</a> tempUnit, <span class="keywordtype">float</span> *temp,</div>
-<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>                           <span class="keywordtype">float</span> *humidity);</div>
-<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span> </div>
-<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>uint8_t <a class="code hl_function" href="hdc3022__private_8h.html#a44044476a3876303e1dc4cb26e2dfba3">hdc3022_calculateCRC8</a>(<span class="keyword">const</span> uint8_t *data, <span class="keywordtype">int</span> len);</div>
-<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span> </div>
-<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span><a class="code hl_enumeration" href="hdc3022_8h.html#ab17029a396cfafd01a71f14f01addb36">hdc3022_AutoMeasMode_t</a> <a class="code hl_function" href="hdc3022__private_8h.html#a009a97eb5740c8f778c882bfa31e30ac">hdc3022_configMode_to_measMode</a>(<a class="code hl_enumeration" href="hdc3022_8h.html#a52ea276e2a20dbfa83e39201146c5623">hdc3022_DefaultMeasMode_t</a> defaultMode);</div>
-<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#define HDC3022_SOFT_RESET 0x3041</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#define HDC3022_DELAY_LPM_0_MS 15</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#define HDC3022_DELAY_LPM_1_MS 9</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#define HDC3022_DELAY_LPM_2_MS 6</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#define HDC3022_DELAY_LPM_3_MS 5</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#define HDC3022_DELAY_RESET_MS 3</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#define HDC3022_DELAY_POWER_ON_MS 5</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#define HDC3022_DELAY_EEPROM_MS 80</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor">#define HDC3022_AUTO_MEAS_EXIT 0x3093</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#define HDC3022_TRANSFER_ALERT_THRESHOLDS_EEPROM 0x6155</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor">#define HDC3022_OFFSET_VALUE_ACCESS 0xA004</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">#define HDC3022_DEFAULT_DEVICE_MEAS_STATE_ACCESS 0x61BB</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="preprocessor">#define HDC3022_TEMP_LSB_OFFSET 0.1708984375f</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="preprocessor">#define HDC3022_HUMIDITY_LSB_OFFSET 0.1953125f</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="preprocessor">#define HDC3022_POSITIVE_SIGN_OFFSET 0x80</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="preprocessor">#define HDC3022_NEGATIVE_SIGN_OFFSET 0x00</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="preprocessor">#define HDC3022_HEATER_ENABLE 0x306D</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="preprocessor">#define HDC3022_HEATER_DISABLE 0x3066</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="preprocessor">#define HDC3022_HEATER_CONFIG 0x306E</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="preprocessor">#define HDC3022_STATUS_REGISTER_READ 0xF32D</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="preprocessor">#define HDC3022_STATUS_REGISTER_CLEAR 0x3041</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="preprocessor">#define HDC3022_NIST_ID_BYTES_5_4_READ 0x3683</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="preprocessor">#define HDC3022_NIST_ID_BYTES_3_2_READ 0x3684</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="preprocessor">#define HDC3022_NIST_ID_BYTES_1_0_READ 0x3685</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="preprocessor">#define HDC3022_MANUFACTER_ID_READ 0x3781</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="keywordtype">bool</span> <a class="code hl_function" href="hdc3022__private_8h.html#a0e93d6d9fffa9a3dfe7af92a59a0e2f0">hdc3022_write_command</a>(<a class="code hl_struct" href="structhdc3022__t.html">hdc3022_t</a> *hdc3022, uint16_t command, <span class="keywordtype">bool</span> nostop);</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="keywordtype">bool</span> <a class="code hl_function" href="hdc3022__private_8h.html#a342fc976a814c649219f745ef9b3b1f7">hdc3022_write_command_data</a>(<a class="code hl_struct" href="structhdc3022__t.html">hdc3022_t</a> *hdc3022, uint16_t command, uint16_t data, <span class="keywordtype">bool</span> nostop);</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span><span class="keywordtype">bool</span> <a class="code hl_function" href="hdc3022__private_8h.html#aed54e0ed94b94300736c5c1efd0c4185">hdc3022_read_single_data</a>(<a class="code hl_struct" href="structhdc3022__t.html">hdc3022_t</a> *hdc3022, uint16_t *data, <span class="keywordtype">bool</span> nostop);</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span><span class="keywordtype">bool</span> <a class="code hl_function" href="hdc3022__private_8h.html#ab3c696509d20e97a46cd08b2a4a56005">hdc3022_read_multi_data</a>(<a class="code hl_struct" href="structhdc3022__t.html">hdc3022_t</a> *hdc3022, uint16_t *data1, uint16_t *data2, <span class="keywordtype">bool</span> nostop);</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span> </div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span><span class="keywordtype">float</span> <a class="code hl_function" href="hdc3022__private_8h.html#af34a5406e191fe5adbab96f24bd287aa">hdc3022_calculate_temp</a>(uint16_t rawTemp, <a class="code hl_enumeration" href="hdc3022_8h.html#ac74ed866d76db55e34b0c422825793fe">hdc3022_TempUnit_t</a> tempUnit);</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span> </div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span><span class="keywordtype">float</span> <a class="code hl_function" href="hdc3022__private_8h.html#a2f63811ed31191e98b307cb76503c689">hdc3022_calculate_humidity</a>(uint16_t rawHumidity);</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span> </div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>uint16_t <a class="code hl_function" href="hdc3022__private_8h.html#ae3c19ae6e8d683353c50f8a013121ef0">hdc3022_calculate_rawTemp</a>(<a class="code hl_enumeration" href="hdc3022_8h.html#ac74ed866d76db55e34b0c422825793fe">hdc3022_TempUnit_t</a> tempUnit, <span class="keywordtype">float</span> temp);</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span> </div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>uint16_t <a class="code hl_function" href="hdc3022__private_8h.html#a2934742dc5fad0c2e31e928acddea04f">hdc3022_calculate_rawHumidity</a>(<span class="keywordtype">float</span> humidity);</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span> </div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>uint16_t <a class="code hl_function" href="hdc3022__private_8h.html#a9892dcf3ad2d67114c9f27fe3c030d29">hdc3022_calculate_alert_threshold</a>(<a class="code hl_enumeration" href="hdc3022_8h.html#ac74ed866d76db55e34b0c422825793fe">hdc3022_TempUnit_t</a> tempUnit, <span class="keywordtype">float</span> temp, <span class="keywordtype">float</span> humidity);</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span> </div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span><span class="keywordtype">void</span> <a class="code hl_function" href="hdc3022__private_8h.html#a863c907580ba867cd64786758b1de297">hdc3022_decode_alert_threshold</a>(uint16_t threshold, <a class="code hl_enumeration" href="hdc3022_8h.html#ac74ed866d76db55e34b0c422825793fe">hdc3022_TempUnit_t</a> tempUnit, <span class="keywordtype">float</span> *temp,</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>                                    <span class="keywordtype">float</span> *humidity);</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span> </div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>uint8_t <a class="code hl_function" href="hdc3022__private_8h.html#afa5ca4ae270d460f0409f28d99bcc42a">hdc3022_calculate_temp_offset</a>(<a class="code hl_enumeration" href="hdc3022_8h.html#ac74ed866d76db55e34b0c422825793fe">hdc3022_TempUnit_t</a> tempUnit, <span class="keywordtype">float</span> temp);</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span> </div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>uint8_t <a class="code hl_function" href="hdc3022__private_8h.html#a74779f6be0484de9de3e8a7b2d266094">hdc3022_calculate_humidity_offset</a>(<span class="keywordtype">float</span> humidity);</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span> </div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>uint16_t <a class="code hl_function" href="hdc3022__private_8h.html#ab419b1b621ba36fb70b0066d0eaea9af">hdc3022_calculate_offset</a>(<a class="code hl_enumeration" href="hdc3022_8h.html#ac74ed866d76db55e34b0c422825793fe">hdc3022_TempUnit_t</a> tempUnit, <span class="keywordtype">float</span> temp, <span class="keywordtype">float</span> humidity);</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span> </div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span><span class="keywordtype">float</span> <a class="code hl_function" href="hdc3022__private_8h.html#a7949ecbedbbcc7b6c81fafe1f039eb1e">hdc3022_decode_temp_offset</a>(<a class="code hl_enumeration" href="hdc3022_8h.html#ac74ed866d76db55e34b0c422825793fe">hdc3022_TempUnit_t</a> tempUnit, uint8_t tempOffset);</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span> </div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span><span class="keywordtype">float</span> <a class="code hl_function" href="hdc3022__private_8h.html#a1ff836849302fd64754ffaf2349c7a9b">hdc3022_decode_humidity_offset</a>(uint8_t humidityOffset);</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span> </div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span><span class="keywordtype">void</span> <a class="code hl_function" href="hdc3022__private_8h.html#a0c156057d18b53f2029e9085c92b5139">hdc3022_decode_offset</a>(uint16_t offset, <a class="code hl_enumeration" href="hdc3022_8h.html#ac74ed866d76db55e34b0c422825793fe">hdc3022_TempUnit_t</a> tempUnit, <span class="keywordtype">float</span> *temp,</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>                           <span class="keywordtype">float</span> *humidity);</div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span> </div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>uint8_t <a class="code hl_function" href="hdc3022__private_8h.html#a44044476a3876303e1dc4cb26e2dfba3">hdc3022_calculateCRC8</a>(<span class="keyword">const</span> uint8_t *data, <span class="keywordtype">int</span> len);</div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span> </div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span><a class="code hl_enumeration" href="hdc3022_8h.html#ab17029a396cfafd01a71f14f01addb36">hdc3022_AutoMeasMode_t</a> <a class="code hl_function" href="hdc3022__private_8h.html#a009a97eb5740c8f778c882bfa31e30ac">hdc3022_configMode_to_measMode</a>(<a class="code hl_enumeration" href="hdc3022_8h.html#a52ea276e2a20dbfa83e39201146c5623">hdc3022_DefaultMeasMode_t</a> defaultMode);</div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="ahdc3022_8h_html"><div class="ttname"><a href="hdc3022_8h.html">hdc3022.h</a></div><div class="ttdoc">HDC3022 I2C Library for the Raspberry Pi pico-sdk.</div></div>
 <div class="ttc" id="ahdc3022_8h_html_a52ea276e2a20dbfa83e39201146c5623"><div class="ttname"><a href="hdc3022_8h.html#a52ea276e2a20dbfa83e39201146c5623">hdc3022_DefaultMeasMode_t</a></div><div class="ttdeci">hdc3022_DefaultMeasMode_t</div><div class="ttdoc">Default measurement modes for the HDC3022 sensor.</div><div class="ttdef"><b>Definition</b> hdc3022.h:113</div></div>
 <div class="ttc" id="ahdc3022_8h_html_ab17029a396cfafd01a71f14f01addb36"><div class="ttname"><a href="hdc3022_8h.html#ab17029a396cfafd01a71f14f01addb36">hdc3022_AutoMeasMode_t</a></div><div class="ttdeci">hdc3022_AutoMeasMode_t</div><div class="ttdoc">Automatic measurement modes for the HDC3022 sensor.</div><div class="ttdef"><b>Definition</b> hdc3022.h:62</div></div>
 <div class="ttc" id="ahdc3022_8h_html_ac74ed866d76db55e34b0c422825793fe"><div class="ttname"><a href="hdc3022_8h.html#ac74ed866d76db55e34b0c422825793fe">hdc3022_TempUnit_t</a></div><div class="ttdeci">hdc3022_TempUnit_t</div><div class="ttdoc">Temperature unit options for HDC3022 sensor readings.</div><div class="ttdef"><b>Definition</b> hdc3022.h:231</div></div>
