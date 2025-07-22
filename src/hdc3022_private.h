@@ -18,6 +18,8 @@
 #ifndef HDC3022_PRIVATE_H
 #define HDC3022_PRIVATE_H
 
+#include "sensor/hdc3022.h"
+
 #define HDC3022_SOFT_RESET 0x3041
 
 #define HDC3022_DELAY_LPM_0_MS 15
