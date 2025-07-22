@@ -15,4 +15,6 @@ cmake ..
 make
 ```
 
-## Examples can be found in the examples directory.
+## Documentation
+There are examples in the examples folder.
+All the code is documented in [here](https://ljn0099.github.io/pico-hdc3022/).
