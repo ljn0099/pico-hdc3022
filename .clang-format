@@ -1,0 +1,10 @@
+BasedOnStyle: LLVM
+IndentWidth: 4
+AllowShortIfStatementsOnASingleLine: false
+AllowShortFunctionsOnASingleLine: None
+ColumnLimit: 100
+BreakBeforeBraces: Custom
+BraceWrapping:
+  BeforeElse: true
+IndentCaseLabels: true
+SeparateDefinitionBlocks: Always
