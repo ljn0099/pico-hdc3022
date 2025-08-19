@@ -6,6 +6,9 @@
 
 bool hdc3022_init_struct(hdc3022_t *hdc3022, i2c_inst_t *i2c, uint8_t i2cAddress,
                          hdc3022_AutoMeasMode_t autoMeasConfig, bool checkDefaultMode) {
+    if (!hdc3022 || !i2c)
+        return false;
+
     hdc3022->i2c = i2c;
     hdc3022->i2cAddress = i2cAddress;
 
@@ -44,6 +47,9 @@ bool hdc3022_init_struct(hdc3022_t *hdc3022, i2c_inst_t *i2c, uint8_t i2cAddress
 // Auto mode
 
 bool hdc3022_set_auto_meas_mode(hdc3022_t *hdc3022, hdc3022_AutoMeasMode_t autoMeasConfig) {
+    if (!hdc3022)
+        return false;
+
     if (autoMeasConfig == HDC3022_AUTO_MEAS_NONE)
         return hdc3022_exit_auto_meas_mode(hdc3022);
 
@@ -55,6 +61,9 @@ bool hdc3022_set_auto_meas_mode(hdc3022_t *hdc3022, hdc3022_AutoMeasMode_t autoM
 }
 
 bool hdc3022_exit_auto_meas_mode(hdc3022_t *hdc3022) {
+    if (!hdc3022)
+        return false;
+
     if (!hdc3022->autoModeEnabled)
         return false;
 
@@ -68,6 +77,20 @@ bool hdc3022_exit_auto_meas_mode(hdc3022_t *hdc3022) {
 
 bool hdc3022_readout_auto_meas(hdc3022_t *hdc3022, hdc3022_AutoMeasReadoutCommand_t readoutCommand,
                                hdc3022_TempUnit_t tempUnit, float *temp, float *humidity) {
+    if (!hdc3022)
+        return false;
+
+    if (!temp && !humidity && readoutCommand == HDC3022_AUTO_MEAS_READOUT)
+        return false;
+
+    if (!temp && readoutCommand == HDC3022_AUTO_MEAS_READOUT_MIN_TEMP ||
+        readoutCommand == HDC3022_AUTO_MEAS_READOUT_MAX_TEMP)
+        return false;
+
+    if (!humidity && readoutCommand == HDC3022_AUTO_MEAS_READOUT_RH ||
+        readoutCommand == HDC3022_AUTO_MEAS_READOUT_MIN_RH ||
+        readoutCommand == HDC3022_AUTO_MEAS_READOUT_MAX_RH)
+        return false;
 
     if (!hdc3022_write_command(hdc3022, readoutCommand, true))
         return false;
@@ -104,6 +127,9 @@ bool hdc3022_readout_auto_meas(hdc3022_t *hdc3022, hdc3022_AutoMeasReadoutComman
 
 bool hdc3022_readout_manual_meas(hdc3022_t *hdc3022, hdc3022_ManualMeasMode_t readCommand,
                                  hdc3022_TempUnit_t tempUnit, float *temp, float *humidity) {
+    if (!hdc3022)
+        return false;
+
     if (hdc3022->autoModeEnabled)
         return false;
 
@@ -129,9 +155,11 @@ bool hdc3022_readout_manual_meas(hdc3022_t *hdc3022, hdc3022_ManualMeasMode_t re
     if (!hdc3022_read_multi_data(hdc3022, &rawTemp, &rawHumidity, false))
         return false;
 
-    *temp = hdc3022_calculate_temp(rawTemp, tempUnit);
+    if (temp)
+        *temp = hdc3022_calculate_temp(rawTemp, tempUnit);
 
-    *humidity = hdc3022_calculate_humidity(rawHumidity);
+    if (humidity)
+        *humidity = hdc3022_calculate_humidity(rawHumidity);
 
     return true;
 }
@@ -139,6 +167,9 @@ bool hdc3022_readout_manual_meas(hdc3022_t *hdc3022, hdc3022_ManualMeasMode_t re
 // Heater
 
 bool hdc3022_set_heater_enabled(hdc3022_t *hdc3022, bool enabled) {
+    if (!hdc3022)
+        return false;
+
     if (enabled)
         return hdc3022_write_command(hdc3022, HDC3022_HEATER_ENABLE, false);
     else
@@ -146,22 +177,34 @@ bool hdc3022_set_heater_enabled(hdc3022_t *hdc3022, bool enabled) {
 }
 
 bool hdc3022_set_heater_power(hdc3022_t *hdc3022, hdc3022_HeaterPower_t heaterPower) {
+    if (!hdc3022)
+        return false;
+
     return hdc3022_write_command_data(hdc3022, HDC3022_HEATER_CONFIG, heaterPower, false);
 }
 
 // Soft reset
 
 bool hdc3022_soft_reset(hdc3022_t *hdc3022) {
+    if (!hdc3022)
+        return false;
+
     return hdc3022_write_command(hdc3022, HDC3022_SOFT_RESET, false);
 }
 
 // Status
 
 bool hdc3022_clear_status(hdc3022_t *hdc3022) {
+    if (!hdc3022)
+        return false;
+
     return hdc3022_write_command(hdc3022, HDC3022_STATUS_REGISTER_CLEAR, false);
 }
 
 bool hdc3022_read_status_all(hdc3022_t *hdc3022, bool statusArray[16]) {
+    if (!hdc3022 || !statusArray)
+        return false;
+
     uint16_t status;
     if (!hdc3022_write_command(hdc3022, HDC3022_STATUS_REGISTER_READ, true))
         return false;
@@ -177,6 +220,9 @@ bool hdc3022_read_status_all(hdc3022_t *hdc3022, bool statusArray[16]) {
 
 bool hdc3022_read_status(hdc3022_t *hdc3022, hdc3022_AlertStatus_t statusPosition,
                          bool *statusValue) {
+    if (!hdc3022 || !statusValue)
+        return false;
+
     uint16_t status;
     if (!hdc3022_write_command(hdc3022, HDC3022_STATUS_REGISTER_READ, true))
         return false;
@@ -192,6 +238,9 @@ bool hdc3022_read_status(hdc3022_t *hdc3022, hdc3022_AlertStatus_t statusPositio
 // Identifiers
 
 uint16_t hdc3022_read_manufacturer_id(hdc3022_t *hdc3022) {
+    if (!hdc3022)
+        return false;
+
     uint16_t manufacturerId = 0;
     if (!hdc3022_write_command(hdc3022, HDC3022_MANUFACTER_ID_READ, true))
         return 0;
@@ -202,6 +251,9 @@ uint16_t hdc3022_read_manufacturer_id(hdc3022_t *hdc3022) {
 }
 
 bool hdc3022_read_nist_id(hdc3022_t *hdc3022, uint8_t nist[6]) {
+    if (!hdc3022 || !nist)
+        return false;
+
     uint16_t part1, part2, part3;
 
     if (!hdc3022_write_command(hdc3022, HDC3022_NIST_ID_BYTES_5_4_READ, true))
@@ -234,6 +286,9 @@ bool hdc3022_read_nist_id(hdc3022_t *hdc3022, uint8_t nist[6]) {
 bool hdc3022_config_alert(hdc3022_t *hdc3022,
                           hdc3022_ConfigAlertThresholdsCommand_t alertSetCommand,
                           hdc3022_TempUnit_t tempUnit, float temp, float humidity) {
+    if (!hdc3022)
+        return false;
+
     uint16_t threshold;
 
     threshold = hdc3022_calculate_alert_threshold(tempUnit, temp, humidity);
@@ -246,6 +301,8 @@ bool hdc3022_config_alert(hdc3022_t *hdc3022,
 
 bool hdc3022_read_alert(hdc3022_t *hdc3022, hdc3022_ReadAlertThresholdsCommand_t alertReadCommand,
                         hdc3022_TempUnit_t tempUnit, float *temp, float *humidity) {
+    if (!hdc3022)
+        return false;
 
     if (!hdc3022_write_command(hdc3022, alertReadCommand, true))
         return false;
@@ -262,6 +319,9 @@ bool hdc3022_read_alert(hdc3022_t *hdc3022, hdc3022_ReadAlertThresholdsCommand_t
 }
 
 bool hdc3022_transfer_alert_thresholds_eeprom(hdc3022_t *hdc3022) {
+    if (!hdc3022)
+        return false;
+
     if (hdc3022->autoModeEnabled)
         return false;
 
@@ -276,6 +336,9 @@ bool hdc3022_transfer_alert_thresholds_eeprom(hdc3022_t *hdc3022) {
 // EEPROM
 
 bool hdc3022_set_default_meas_state(hdc3022_t *hdc3022, hdc3022_DefaultMeasMode_t measMode) {
+    if (!hdc3022)
+        return false;
+
     if (hdc3022->autoModeEnabled)
         return false;
 
@@ -289,6 +352,9 @@ bool hdc3022_set_default_meas_state(hdc3022_t *hdc3022, hdc3022_DefaultMeasMode_
 }
 
 bool hdc3022_read_default_meas_state(hdc3022_t *hdc3022, hdc3022_DefaultMeasMode_t *defaultMode) {
+    if (!hdc3022 || !defaultMode)
+        return false;
+
     if (!hdc3022_write_command(hdc3022, HDC3022_DEFAULT_DEVICE_MEAS_STATE_ACCESS, true))
         return false;
 
@@ -304,6 +370,9 @@ bool hdc3022_read_default_meas_state(hdc3022_t *hdc3022, hdc3022_DefaultMeasMode
 
 bool hdc3022_write_offsets(hdc3022_t *hdc3022, hdc3022_TempUnit_t tempUnit, float temp,
                            float humidity) {
+    if (!hdc3022)
+        return false;
+
     if (hdc3022->autoModeEnabled)
         return false;
 
@@ -319,6 +388,9 @@ bool hdc3022_write_offsets(hdc3022_t *hdc3022, hdc3022_TempUnit_t tempUnit, floa
 
 bool hdc3022_read_offsets(hdc3022_t *hdc3022, hdc3022_TempUnit_t tempUnit, float *temp,
                           float *humidity) {
+    if (!hdc3022)
+        return false;
+
     uint16_t rawOffset;
 
     if (!hdc3022_write_command(hdc3022, HDC3022_OFFSET_VALUE_ACCESS, true))
@@ -334,6 +406,9 @@ bool hdc3022_read_offsets(hdc3022_t *hdc3022, hdc3022_TempUnit_t tempUnit, float
 
 // Low level functions
 bool hdc3022_write_command(hdc3022_t *hdc3022, uint16_t command, bool nostop) {
+    if (!hdc3022)
+        return false;
+
     uint8_t buffer[2];
     buffer[0] = (uint8_t)(command >> 8);   // MSB Command
     buffer[1] = (uint8_t)(command & 0xFF); // LSB Command
@@ -347,6 +422,9 @@ bool hdc3022_write_command(hdc3022_t *hdc3022, uint16_t command, bool nostop) {
 }
 
 bool hdc3022_write_command_data(hdc3022_t *hdc3022, uint16_t command, uint16_t data, bool nostop) {
+    if (!hdc3022)
+        return false;
+
     uint8_t buffer[5];
     buffer[0] = (uint8_t)(command >> 8);              // MSB Command
     buffer[1] = (uint8_t)(command & 0xFF);            // LSB Command
@@ -363,6 +441,9 @@ bool hdc3022_write_command_data(hdc3022_t *hdc3022, uint16_t command, uint16_t d
 }
 
 bool hdc3022_read_single_data(hdc3022_t *hdc3022, uint16_t *data, bool nostop) {
+    if (!hdc3022 || !data)
+        return false;
+
     uint8_t buffer[3];
 
     // Read data + CRC
@@ -381,6 +462,9 @@ bool hdc3022_read_single_data(hdc3022_t *hdc3022, uint16_t *data, bool nostop) {
 }
 
 bool hdc3022_read_multi_data(hdc3022_t *hdc3022, uint16_t *data1, uint16_t *data2, bool nostop) {
+    if (!hdc3022 || !data1 || !data2)
+        return false;
+
     uint8_t buffer[6];
     i2c_read_blocking(hdc3022->i2c, hdc3022->i2cAddress, buffer, 6, nostop);
 
@@ -465,8 +549,10 @@ void hdc3022_decode_alert_threshold(uint16_t threshold, hdc3022_TempUnit_t tempU
     uint16_t rawHumidity = msbHumidity << 9;
     uint16_t rawTemp = msbTemp << 7;
 
-    *temp = hdc3022_calculate_temp(rawTemp, tempUnit);
-    *humidity = hdc3022_calculate_humidity(rawHumidity);
+    if (temp)
+        *temp = hdc3022_calculate_temp(rawTemp, tempUnit);
+    if (humidity)
+        *humidity = hdc3022_calculate_humidity(rawHumidity);
 }
 
 uint8_t hdc3022_calculate_temp_offset(hdc3022_TempUnit_t tempUnit, float temp) {
@@ -541,12 +627,17 @@ void hdc3022_decode_offset(uint16_t offset, hdc3022_TempUnit_t tempUnit, float *
     uint8_t humidityOffset = (offset >> 8) & 0xFF;
     uint8_t tempOffset = offset & 0xFF;
 
-    *temp = hdc3022_decode_temp_offset(tempUnit, tempOffset);
-    *humidity = hdc3022_decode_humidity_offset(humidityOffset);
+    if (temp)
+        *temp = hdc3022_decode_temp_offset(tempUnit, tempOffset);
+    if (humidity)
+        *humidity = hdc3022_decode_humidity_offset(humidityOffset);
 }
 
 // From github.com/adafruit/Adafruit_HDC302x
 uint8_t hdc3022_calculateCRC8(const uint8_t *data, int len) {
+    if (!data)
+        return 0;
+
     uint8_t crc = 0xFF; // Typical initial value
     for (int i = 0; i < len; i++) {
         crc ^= data[i];                  // XOR byte into least sig. byte of crc
