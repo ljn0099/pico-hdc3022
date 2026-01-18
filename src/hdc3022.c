@@ -83,13 +83,13 @@ bool hdc3022_readout_auto_meas(hdc3022_t *hdc3022, hdc3022_AutoMeasReadoutComman
     if (!temp && !humidity && readoutCommand == HDC3022_AUTO_MEAS_READOUT)
         return false;
 
-    if (!temp && readoutCommand == HDC3022_AUTO_MEAS_READOUT_MIN_TEMP ||
-        readoutCommand == HDC3022_AUTO_MEAS_READOUT_MAX_TEMP)
+    if (!temp && (readoutCommand == HDC3022_AUTO_MEAS_READOUT_MIN_TEMP ||
+        readoutCommand == HDC3022_AUTO_MEAS_READOUT_MAX_TEMP))
         return false;
 
-    if (!humidity && readoutCommand == HDC3022_AUTO_MEAS_READOUT_RH ||
+    if (!humidity && (readoutCommand == HDC3022_AUTO_MEAS_READOUT_RH ||
         readoutCommand == HDC3022_AUTO_MEAS_READOUT_MIN_RH ||
-        readoutCommand == HDC3022_AUTO_MEAS_READOUT_MAX_RH)
+        readoutCommand == HDC3022_AUTO_MEAS_READOUT_MAX_RH))
         return false;
 
     if (!hdc3022_write_command(hdc3022, readoutCommand, true))
@@ -307,7 +307,6 @@ bool hdc3022_read_alert(hdc3022_t *hdc3022, hdc3022_ReadAlertThresholdsCommand_t
     if (!hdc3022_write_command(hdc3022, alertReadCommand, true))
         return false;
 
-    uint16_t rawTemp, rawHumidity;
     uint16_t threshold;
 
     if (!hdc3022_read_single_data(hdc3022, &threshold, false))
@@ -624,8 +623,8 @@ float hdc3022_decode_humidity_offset(uint8_t humidityOffset) {
 
 void hdc3022_decode_offset(uint16_t offset, hdc3022_TempUnit_t tempUnit, float *temp,
                            float *humidity) {
-    uint8_t humidityOffset = (offset >> 8) & 0xFF;
-    uint8_t tempOffset = offset & 0xFF;
+    uint8_t humidityOffset = (uint8_t)(offset >> 8);
+    uint8_t tempOffset = (uint8_t)offset;
 
     if (temp)
         *temp = hdc3022_decode_temp_offset(tempUnit, tempOffset);
@@ -656,7 +655,7 @@ uint8_t hdc3022_calculateCRC8(const uint8_t *data, int len) {
 hdc3022_AutoMeasMode_t hdc3022_configMode_to_measMode(hdc3022_DefaultMeasMode_t defaultMode) {
     switch (defaultMode) {
         case HDC3022_AUTO_CONFIG_1X_2S_LPM_0:
-            return HDC3022_AUTO_CONFIG_1X_2S_LPM_0;
+            return HDC3022_AUTO_MEAS_1X_2S_LPM_0;
         case HDC3022_AUTO_CONFIG_1X_2S_LPM_1:
             return HDC3022_AUTO_MEAS_1X_2S_LPM_1;
         case HDC3022_AUTO_CONFIG_1X_2S_LPM_2:
